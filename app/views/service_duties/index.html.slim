@@ -1,0 +1,25 @@
+.container 
+  h1 Listing service_duties
+  = link_to 'New Service duty', new_service_duty_path
+  table.table
+    thead
+      tr
+        th Day of week
+        th Start time
+        th Duration
+        th Service
+        th
+        th
+        th
+
+    tbody
+      - @service_duties.each do |service_duty|
+        tr
+          td = service_duty.day_of_week
+          td = service_duty.start_time
+          td = service_duty.duration
+          td = service_duty.service.name
+          td = link_to 'Show', service_duty
+          td = link_to 'Edit', edit_service_duty_path(service_duty)
+          td = link_to 'Destroy', service_duty, data: { confirm: 'Are you sure?' }, method: :delete
+

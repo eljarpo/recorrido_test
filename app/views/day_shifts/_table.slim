@@ -1,0 +1,24 @@
+.row
+    .col-3 id='service_header'
+        h3 = service.name
+    .col-3 id="service_button"
+        button.btn.btn-primary data-id="#{service.id}" data-reflex="click->Service#asign_avaliabilities" Disponibilidad
+.row 
+    .col-3
+        table 
+            - service.employee_shifts.each do |employee|
+                tr 
+                    th = employee[:name]
+                    td = employee[:shifts]
+.row
+    
+.row
+    - service.day_shifts.each do |shift|
+        .col-3
+            table
+                tr
+                    th colspan="2" = shift.start_time
+                
+                tr 
+                    td = "#{shift.start_time.strftime('%H:%M')} - #{(shift.start_time+shift.duration.hour).strftime('%H:%M')}"
+                    td Jorge

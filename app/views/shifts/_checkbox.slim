@@ -1,0 +1,5 @@
+.form-check
+    - if selected
+        input.form-check-input type="checkbox" data-employee="#{employee}" data-shift="#{shift}" checked="true" data-reflex="change->Shift#set_employee_avaliability"
+    - else
+        input.form-check-input type="checkbox" data-employee="#{employee}" data-shift="#{shift}" data-reflex="change->Shift#set_employee_avaliability"

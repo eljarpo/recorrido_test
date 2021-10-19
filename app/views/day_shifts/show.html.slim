@@ -1,0 +1,14 @@
+p#notice = notice
+
+p
+  strong date:
+  = @day_shift.date
+
+p
+  strong Service: 
+  = @day_shift.service.name
+
+
+=> link_to 'Edit', edit_day_shift_path(@day_shift)
+'|
+=< link_to 'Back', day_shifts_path

@@ -1,0 +1,10 @@
+.col-4
+    / button data-id="#{service.id}" data-date="#{date}" data-reflex='click->Service#previous' atras
+    = link_to root_path(date: date-1.week, service: service.id) do 
+        i.fas.fa-chevron-left.fa-3x
+.col-4 
+    h5 = "Semana #{date.cweek} del #{date.year}"
+.col-4
+    / button data-id="#{service.id}" data-date="#{date}" data-reflex='click->Service#next' siguiente
+    = link_to root_path(date: date+1.week, service: service.id) do 
+        i.fas.fa-chevron-right.fa-3x

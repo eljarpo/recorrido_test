@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Start time:
+  = @shift.start_time
+
+p
+  strong Duration:
+  = @shift.duration
+
+p
+  strong day shift:
+  = @shift.day_shift
+
+p
+  strong Employee:
+  = @shift.employee
+
+=> link_to 'Edit', edit_shift_path(@shift)
+'|
+=< link_to 'Back', shifts_path

@@ -1,0 +1,23 @@
+- if service.has_shifts?
+    .row
+        = render partial: 'services/menu', locals: { service: service, date: date }
+- else
+    .row
+        .col-3 id='service_header'
+            h3 = service.name
+        .col-3 id="service_button"
+            button.btn.btn-primary data-id="#{service.id}" data-date="#{service.this_week_shifts(date).first.nil? ? '' : service.this_week_shifts(date).first.date}" data-reflex="click->Service#asign_avaliabilities" Disponibilidad
+    .row id="shift_employees_s#{service.id}_d#{service.this_week_shifts(date).first.nil? ? '0' : service.this_week_shifts(date).first.date.cweek}"
+        = render partial: 'shifts/employees', locals: { employee_shifts: service.employee_shifts(date) }
+    .row
+        
+    .row
+        - service.this_week_shifts(date).each do |day_shift|
+            .col-6
+                table.table
+                    tr
+                        th colspan="2" = day_shift.date.strftime("%A %d, %B")
+                    - day_shift.shifts.order(:start_time).each do |shift|
+                        tr id="#{dom_id(shift)}"
+                            = render partial: 'shifts/table_row', locals: {shift: shift, service: service, day_shift: day_shift}
+                            

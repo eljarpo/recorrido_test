@@ -1,0 +1,8 @@
+td class="#{shift.employee_id.to_i > 0 ? 'table-success' : 'table-danger'}"
+    = "#{shift.start_time.strftime('%H:%M')} - #{(shift.start_time+shift.duration.hour).strftime('%H:%M')}"
+- if shift.employees.size == 0
+    td class="#{shift.table_color}" 
+        i.fas.fa-exclamation-triangle
+        |Sin Disponibilidad
+-else
+    td class="#{shift.table_color}" = select_tag :employee, options_for_select(shift.employees.pluck(:name, :id), {:selected => shift.employee_id}), { :include_blank => true, data: { service: service.id, date: day_shift.date, reflex: 'change->Shift#set_shift_employee', shift: shift.id}}

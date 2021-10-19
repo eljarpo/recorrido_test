@@ -1,0 +1,23 @@
+h1 Listing day_shifts
+
+table
+  thead
+    tr
+      th date
+      th Service
+      th
+      th
+      th
+
+  tbody
+    - @day_shifts.each do |day_shift|
+      tr
+        td = day_shift.date
+        td = day_shift.service.name
+        td = link_to 'Show', day_shift
+        td = link_to 'Edit', edit_day_shift_path(day_shift)
+        td = link_to 'Destroy', day_shift, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Duty shift', new_day_shift_path

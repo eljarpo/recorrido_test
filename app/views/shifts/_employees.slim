@@ -1,0 +1,6 @@
+.col-3
+    table.table
+        - employee_shifts.each do |employee|
+            tr class="#{table_color(employee[:color])}"
+                th = employee[:name]
+                td = employee[:shifts]

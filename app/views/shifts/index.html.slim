@@ -1,0 +1,27 @@
+h1 Listing shifts
+
+table
+  thead
+    tr
+      th Start time
+      th Duration
+      th Day shift
+      th Employee
+      th
+      th
+      th
+
+  tbody
+    - @shifts.each do |shift|
+      tr
+        td = shift.start_time.strftime('%H:%M')
+        td = shift.duration
+        td = shift.day_shift.date
+        td = shift.employee
+        td = link_to 'Show', shift
+        td = link_to 'Edit', edit_shift_path(shift)
+        td = link_to 'Destroy', shift, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Duty shift', new_shift_path

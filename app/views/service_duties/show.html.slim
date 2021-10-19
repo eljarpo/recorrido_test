@@ -1,0 +1,22 @@
+.container
+  p#notice = notice
+
+  p
+    strong Day of week:
+    = @service_duty.day_of_week
+
+  p
+    strong Start time:
+    = @service_duty.start_time
+
+  p
+    strong Duration:
+    = @service_duty.duration
+
+  p
+    strong Service:
+    = @service_duty.service.name
+
+  => link_to 'Edit', edit_service_duty_path(@service_duty)
+  '|
+  =< link_to 'Back', service_duties_path

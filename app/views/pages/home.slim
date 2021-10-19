@@ -1,0 +1,21 @@
+
+.container
+    h1 Horarios
+    .row
+        .col-sm
+            .input-group.mb-3 data-controller="service"
+                input.form-control type="text" placeholder="Service name"  data-service-target="input"
+                button.btn.btn-outline-secondary type="button" id="button-addon2" data-action="click->service#createService" Crear
+
+    .row
+        .col-3
+            ul.list-group id="service_list"
+                - @services.all.each do |service|
+                    li.list-group-item.list-group-item-action data-id="#{service.id}" data-reflex="click->Service#select" = service.name
+        - service = Service.find(params[:service] || 1)
+        .col-8
+            .row id="service_cal"
+                - date = params[:date].nil? ? Date.today : params[:date].to_date
+                = render partial: 'services/cal', locals: { service: service, date: date } 
+            .row id="service_table"
+                = render partial: 'shifts/avaliability_table', locals: { service: service, date: date }

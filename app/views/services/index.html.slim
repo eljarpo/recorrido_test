@@ -1,0 +1,20 @@
+.container
+  h1 Listing services
+
+  = link_to 'New Service', new_service_path
+  table.table
+    thead
+      tr
+        th Name
+        th
+        th
+        th
+
+    tbody
+      - @services.each do |service|
+        tr
+          td = service.name
+          td = link_to 'Show', service
+          td = link_to 'Edit', edit_service_path(service)
+          td = link_to 'Destroy', service, data: { confirm: 'Are you sure?' }, method: :delete
+

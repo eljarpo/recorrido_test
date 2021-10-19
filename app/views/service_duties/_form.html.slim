@@ -1,0 +1,21 @@
+= form_for @service_duty do |f|
+  - if @service_duty.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@service_duty.errors.count, 'error')} prohibited this service_duty from being saved:"
+      ul
+        - @service_duty.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :day_of_week
+    = f.number_field :day_of_week
+  .field
+    = f.label :start_time
+    = f.datetime_select :start_time
+  .field
+    = f.label :duration
+    = f.number_field :duration
+  .field
+    = f.label :service_id
+    = f.text_field :service_id
+  .actions = f.submit

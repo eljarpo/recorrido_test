@@ -1,0 +1,5 @@
+.form-check
+    - if selected
+        input.form-check-input type="checkbox" id="flexCheckDefault" data-employee="#{employee}" data-day_shift="#{day_shift}" checked="true" data-reflex="change->DayShift#set_employee_avaliability"
+    - else
+        input.form-check-input type="checkbox" id="flexCheckDefault" data-employee="#{employee}" data-day_shift="#{day_shift}" data-reflex="change->DayShift#set_employee_avaliability"

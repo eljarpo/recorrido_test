@@ -1,0 +1,15 @@
+= form_for @day_shift do |f|
+  - if @day_shift.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@day_shift.errors.count, 'error')} prohibited this day_shift from being saved:"
+      ul
+        - @day_shift.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .field
+    = f.label :service_id
+    = f.text_field :service_id
+  .actions = f.submit

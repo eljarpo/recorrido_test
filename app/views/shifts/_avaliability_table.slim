@@ -1,0 +1,29 @@
+- if service.has_shifts?
+    .row
+        = render partial: 'services/menu', locals: { service: service, date: date }
+- else
+    .row
+        .col-3 id='service_header'
+            h3 = service.name
+        .col-3 id="service_button"
+            button.btn.btn-primary data-id="#{service.id}" data-date="#{service.this_week_shifts(date).first.nil? ? '' : service.this_week_shifts(date).first.date}" data-reflex="click->Service#asign_times" Asignar Horarios
+    .row 
+        / p del #{service.this_week_shifts(date).first.date.beginning_of_week.strftime("%d/%m/%Y")} al #{service.this_week_shifts(date).first.date.end_of_week.strftime("%d/%m/%Y")}
+    .row
+        .col-10
+            table.table
+                - service.this_week_shifts(date).each do |day_shift|
+                    tr
+                        th = day_shift.date.strftime("%A %d, %B")
+                        - Employee.all.each do |employee|
+                            th = employee.name
+                        - day_shift.shifts.order(:start_time).each do |shift|
+                            tr 
+                                td = "#{shift.start_time.strftime('%H:%M')} - #{(shift.start_time+shift.duration.hour).strftime('%H:%M')}"
+                                - Employee.all.each do |employee|
+                                    td id="d#{shift.id}_e#{employee.id}"
+                                        .form-check
+                                            - if shift.employees.include?(employee)
+                                                input.form-check-input type="checkbox" data-employee="#{employee.id}" data-shift="#{shift.id}" checked="true" data-reflex="change->Shift#set_employee_avaliability"
+                                            - else 
+                                                input.form-check-input type="checkbox" data-employee="#{employee.id}" data-shift="#{shift.id}" data-reflex="change->Shift#set_employee_avaliability"

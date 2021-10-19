@@ -1,0 +1,26 @@
+.row
+    .col-3 id='service_header'
+        h3 = service.name
+    .col-3 id="service_button"
+        button.btn.btn-primary data-id="#{service.id}" data-reflex="click->Service#asign_times" Asignar Horarios
+.row 
+    / p = "Semana #{service.start_time.strftime("%W")} del #{service.start_time.strftime("%Y")}"
+    p del 02/02/2020 al 08/02/2020
+.row
+    .col-6
+        table 
+            - service.day_shifts.each do |day_shift|
+                tr
+                    th = day_shift.date.strftime("%A %d, %B")
+                    - Employee.all.each do |employee|
+                        th = employee.name
+                    - day_shift.shifts.each do |shift|
+                        tr 
+                            td = "#{shift.start_time.strftime('%H:%M')} - #{(shift.start_time+shift.duration.hour).strftime('%H:%M')}"
+                            - Employee.all.each do |employee|
+                                td id="d#{shift.id}_e#{employee.id}"
+                                    .form-check
+                                        - if shift.employees.include?(employee)
+                                            input.form-check-input type="checkbox" id="flexCheckDefault" data-employee="#{employee.id}" data-shift="#{shift.id}" checked="1" data-reflex="change->DayShift#set_employee_avaliability"
+                                        - else 
+                                            input.form-check-input type="checkbox" id="flexCheckDefault" data-employee="#{employee.id}" data-shift="#{shift.id}" data-reflex="change->DayShift#set_employee_avaliability"
