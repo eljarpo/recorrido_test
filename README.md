@@ -16,6 +16,7 @@ Prueba para Recorrido
 * Crear base de datos: `rails db:create`
 * Crear migraciones de BD: `rails db:migrate`
 * Generar seeds para BD: `rails db:seed`
+* Instalar dependencias webpack: `yarn install`
 * Iniciar servidor: `rails s`
 
 
