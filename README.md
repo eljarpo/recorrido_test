@@ -22,8 +22,10 @@ Prueba para Recorrido
 
 ## Uso
 
+### Se crean algunos con el seed
 * Crear Servicio
 * Asignar horarios a servicio (pestaña horarios)
+
 * seleccionar servicio en pagina inicio
 * Asignar disponibilidad de empleados
 * asignar empleado a horario
