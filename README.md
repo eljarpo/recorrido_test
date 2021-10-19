@@ -21,10 +21,11 @@ Prueba para Recorrido
 
 
 ## Uso
+### Para crear nuevos servicios
+* Crear Servicio (En caso que sea necesario)
+* Asignar horarios a servicio (pestaña horarios) (En caso que sea necesario)
 
-### Se crean algunos con el seed
-* Crear Servicio
-* Asignar horarios a servicio (pestaña horarios)
+### Para servicios ya creados
 
 * seleccionar servicio en pagina inicio
 * Asignar disponibilidad de empleados
